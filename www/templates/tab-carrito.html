@@ -1,0 +1,45 @@
+<ion-view view-title="Carrito">
+	<ion-content>
+		<div class="container sinesp">
+
+			<div class="row contend" ng-repeat="x in carrito">
+				<div class="col">
+					<div class="carritoimg">
+						<img src="{{x.imagen}}">
+						<p><span class="centrado">Precio: Q.{{x.precio}}</span></p>
+					</div>
+				</div>
+				<div class="row centrado">
+					<div class="col">
+						<p>{{x.nombre}}</p>
+						<p><span style="font-weight: bolder;">Descripcion:</span> {{x.descripcion}}</p>
+						<p>x{{x.cantidad}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container sub" ng-if="vista">
+			<div class="row">
+				<div class="col centrado">
+					<span>Subtotal: {{subtotal}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="container not" ng-if="nada">
+			<div class="row centrado">
+				<div class="col centrado">
+					<i class="fas fa-not-equal"></i>
+				</div>
+			</div>
+			<div class="row centrado">
+				<div class="col centrado">
+					<span>No hay elementos en carrito</span>
+				</div>
+			</div>
+		</div>
+
+
+	</ion-content>
+</ion-view>

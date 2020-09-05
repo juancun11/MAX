@@ -1,0 +1,37 @@
+<ion-view view-title="Favoritos">
+	<ion-content>
+		<div class="container sinesp">
+
+			<div class="row contend" ng-repeat="x in favoritos">
+				<div class="col">
+					<div class="carritoimg">
+						<img src="{{x.imagen}}">
+						<p><span class="centrado">Precio: Q.{{x.precio}}</span></p>
+					</div>
+				</div>
+				<div class="row centrado">
+					<div class="col">
+						<p class="centrado">{{x.nombre}}</p>
+						<p class="centrado"><i class="fas fa-heart corazon"></i></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container not" ng-if="nada">
+			<div class="row centrado">
+				<div class="col centrado">
+					<i class="fas fa-not-equal"></i>
+				</div>
+			</div>
+			<div class="row centrado">
+				<div class="col centrado">
+					<span>No hay elementos en Favoritos</span>
+				</div>
+			</div>
+		</div>
+
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,50 @@
+
+<div class="container fondo">
+
+	<div class="row">
+		<div class="col titulo letra text-center">
+			<span>Regístrate</span>
+		</div>
+	</div>
+
+	<div class="row info letra">
+		<div class="col text-center">
+			<span>USUARIO</span>
+			<input type="text" name="" placeholder="......." class="input text-center">
+		</div>
+	</div>
+
+	<div class="row info letra mail">
+		<div class="col text-center">
+			<span>CORREO</span>
+			<input type="email" name="" placeholder="......." class="input text-center" ng-model="user.email">
+		</div>
+	</div>
+
+	<div class="row info letra mail">
+		<div class="col text-center">
+			<span>CONTRASEÑA</span>
+			<input type="password" name="" placeholder="......." class="input text-center" ng-model="user.contra">
+		</div>
+	</div>
+
+	<div class="row info letra mail">
+		<div class="col text-center">
+			<span>CONFIRMAR CONTRASEÑA</span>
+			<input type="password" name="" placeholder="......." class="input text-center" ng-model="confir.contra">
+		</div>
+	</div>
+
+	<div class="row centrado">
+		<div class="col centrado">
+			<div class="boton letra" ng-click="obtener(user)"><span>Continuar</span></div>
+		</div>
+	</div>
+
+	<div class="row espacio">
+		<div class="col">
+			<span class="log" ui-sref="login">¿Ya tienes una cuenta? &nbsp <b>Iniciar</b> </span>
+		</div>
+	</div>
+
+</div>

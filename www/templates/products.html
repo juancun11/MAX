@@ -1,0 +1,64 @@
+<!-- Vista donde se muestran los productos ya filtrados -->
+<ion-view view-title="Comprar">
+	<ion-content>
+
+		<div class="container banner bannerajuste">
+
+			<div class="row banner" ng-repeat= "c in Categorias | filter: nombreCategoria">
+				<div class="col banner">
+					<img src="{{c.banner}}">
+					<div class="desc">
+						<h4 class="centrado">{{c.nombreCategoria}}</h4>
+						<span class="centrado">{{c.descripcion}}</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container ajusteproducto">
+
+			<div class="row contend" ng-repeat="x in lista | filter: nombreCategoria">
+				<div class="col centrado imgproduct">
+					<div>
+						<img src="{{x.imagen}}">
+						<p class="text-center precio"><span>Precio: Q.{{x.precio}}</span></p>
+						<div class="row">
+							<div class="col centrado">
+								<select ng-model="cantidad">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col col-60 ajustecontend">
+					<p>{{x.nombre}}</p>
+					<p><span style="font-weight: bolder;">Descripcion:</span> {{x.descripcion}}</p>
+					<p class="centrado">
+						<div class="row centrado Iconos line">
+							<div class="col centrado" ng-click="addFavorites(x)">
+								<i class="fas fa-heart corazon"></i>
+							</div>
+							<div class="col centrado">
+								<i class="fas fa-cart-arrow-down carro" ng-click="agregar(x,cantidad)"></i>
+							</div>
+							<div class="col centrado">
+								<i class="fas fa-share-alt compartir"></i>
+							</div>
+						</div>
+					</p>
+				</div>
+			</div>
+		</div>		
+	</ion-content>
+</ion-view>

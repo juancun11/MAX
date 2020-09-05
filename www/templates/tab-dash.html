@@ -1,0 +1,26 @@
+<ion-view view-title="Tiendas Max">
+	<ion-content class="padding">
+	<div class="container espaciado">
+		<div class="row espacio" ng-repeat= "c in Categorias">
+			<div class="col contenedor sinEs">
+				<div class="row">
+					<div class="col col-25 centrado alto">
+						<img src="{{c.imagen}}">
+					</div>
+					<div class="col">
+						<div class="row">
+							<div class="col titulos">{{c.nombreCategoria}}</div>
+						</div>
+						<div class="row">
+							<div class="col ajustedesc">{{c.descripcion}}</div>
+						</div>
+					</div>
+					<div class="col col-10 centrado" ng-click="viewProducts('{{c.nombreCategoria}}')">
+						<i class="fas fa-angle-right iconorig"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</ion-content>
+</ion-view>

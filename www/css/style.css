@@ -1,0 +1,232 @@
+/* Empty. Add your own CSS if you like */
+.fondo {
+	background: url("../img/registro.jpg")center no-repeat;
+	background-size: cover;
+	height: 100%; 
+}
+.fondo:before {
+	content:'';
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background-color: rgba(0,0,0,0.5);
+}
+.titulo {
+	padding-bottom: 10%;
+	font-size: 20px;
+	position: relative;
+}
+.container {
+	padding-top: 27%;
+}
+.info span{
+	position: relative;
+	font-size: 15px;
+}
+.input {
+	font-family: 'Manrope', sans-serif;
+	font-size: 18px;
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid gray !important;
+	outline: none;
+	font-size: 20px !important;
+	color: #ffff !important;
+	background: transparent;
+	position: relative !important;
+	}
+	.mail {
+		padding-top: 5% !important;
+	}
+	.boton {
+		font-size: 16px;
+		font-weight: bolder;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 16px;
+		position: relative;
+		background-color: #eb4559;
+		width: 230px;
+		height: 36px;
+		margin-top: 12%;
+	}
+	.centrado {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+	.log {
+		color: gray;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.log b{
+		color: #ffff;
+	}
+.letra span{
+	color: #ffff !important;
+	font-family: 'Manrope', sans-serif;
+}
+
+/* Vista Login */
+.logo {
+	position: relative;
+	width: 250px;
+	height: 125px;
+}
+.ajuste {
+	padding-top: 10%;
+}
+
+/* Vista Principal tutorial*/
+.fondotuto {
+	background: url("../img/principal.jpg")center no-repeat;
+	background-size: cover;
+	height: 100%;
+	font-family: 'Manrope', sans-serif;
+}
+.tutorial {
+	background-color: #FFFF;
+	margin-top: 500px;
+}
+.tutorial h3{
+	color: #E4E4E4;
+}
+.tutorial h1{
+	font-size: 20px;
+}
+/* tab dash  categorias o principal tiendas max*/
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+.title {
+	font-family: 'Montserrat', sans-serif !important;
+	color: #FFFF !important;
+	font-weight: bolder !important;
+}
+.principal {
+	background-color: #E7505E !important;
+}
+.contenedor {
+	background-color: #E1E1E1;
+	border-radius: 5px;
+	padding: 0;
+	height: 85px;
+}
+.espacio {
+	padding-bottom: 6%;
+}
+.sinEs {
+	padding: 0;
+}
+.centrado {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.alto {
+	height: 85px;
+}
+.ajustedesc {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 10px;
+}
+.titulos {
+	font-weight: bolder;
+	padding-bottom: 0;
+}
+.iconorig {
+	font-size: 34px;
+	color: #9D9D9D;
+	cursor: pointer;
+}
+.espaciado {
+	padding-top: 0px;
+}
+/* vista por categorias */
+.contend {
+	background-color: #FFFF;
+	border-radius: 5px;
+	padding: 0;
+	height: 100%;
+	margin-bottom: 10%;
+	border-bottom: 10%;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.line {
+	border-top: 0.5px solid black;
+}
+.Iconos{
+	color: #E0DEDE;
+	font-size: 22px;
+}
+.corazon:hover{
+	color: black;
+}
+.carro:hover{
+	color: black;
+}
+.compartir:hover{
+	color: black;
+}
+.ajusteproducto {
+	padding: 18px;
+}
+.banner {
+	padding: 0;
+}
+.banner img{
+	height: 225px;
+	width: 100%;
+	border-bottom: 6px solid #ffc93c;
+}
+.bannerajuste{
+	padding-bottom: 30%;
+}
+.imgproduct img{
+	width: 100%;
+	height: 100%;
+}
+.ajustecontend {
+	margin-top: 5%;
+}
+.precio {
+	margin: 0;
+}
+.desc {
+	color: #FFFF !important;
+	margin-top: -40% !important;
+}
+.desc h4{
+	color: #FFFF;
+}
+/* vista Carrito de compras */
+.carritoimg img{
+	width: 125px;
+	height: 100px;
+}
+.sinesp {
+	padding: 16px;
+}
+.sub {
+	padding: 0;
+}
+.not{
+	color: #E0DEDE;
+	font-size: 20px;
+	margin-top: 20%;
+}
+.not i{
+	font-size: 60px;
+}
+/* vista favoritos*/
+.espaciado{
+	padding-top: 20px;
+}
