@@ -16,39 +16,66 @@ var firebaseConfig = {
 angular.module('starter.controllers', [])
 
 //Controlador Para registro de usuario
-.controller("registroCtrl",function($scope){
-	$scope.obtener = function(user){
-	firebase.auth().createUserWithEmailAndPassword(user.email, user.contra).then(function a(y){
-		swal("se creo correctamente YEAH")
-			firebase.database().ref("/usuario").set()({
-				correo: user.email
+.controller("registroCtrl",function($scope, $state){
+	//cerrar sesion del  usuario
+	firebase.auth().signOut().then(function(){
+	}).catch(function(error){
+		var mensaje = error.message;
+		console.log(mensaje);
 	})
-	firebase.out().signout().then(function(){
-		// sign-out successful
+	//variable UID del usuario registrado
+	$scope.uid = "";
+
+	$scope.obtener = function(user){
+		//Crear usuario con la autenticacion
+		firebase.auth().createUserWithEmailAndPassword(user.email, user.contra).then(function a(y){
+			// Notificacion que se creo el usuario
+			swal("se creo correctamente YEAH");
+			//obteber uid del ususario refistrado
+			$scope.uid = y.user.uid;
+			//Almacena el ususrio en la base de datos
+			firebase.database().ref("/users").child($scope.uid).set({
+				correo: user.email,
+				nombre: user.nombre,
+				uid: $scope.uid
+			})
+		})
+
+		//cerrar sesion del  usuario
+		firebase.auth().signOut().then(function(){
 		}).catch(function(error){
-		// An error.
-		}); // hasta aqui
-		}).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		// ...
-		});
+			var mensaje = error.message;
+			console.log(mensaje);
+		})
+		//borra el contenido del formulario
+		$scope.user = {};
+		//re direccion al login
+		$state.go("login");
 	}
 })
 
+
 //Controlador vista inicio
-.controller("loginCtrl",function($scope, $ionicPopover){
-	//conectar app con facebook
-	$window.fbAsyncInit = function() {
-		FB.init({ 
-		appId: '657057955159871',
-		status: true, 
-		cookie: true, 
-		xfbml: true,
-		version: 'v2.4'
-		});
-	};
+.controller("loginCtrl",function($scope, $state){
+
+	//cerrar sesion del  usuario
+	firebase.auth().signOut().then(function(){
+	}).catch(function(error){
+		var mensaje = error.message;
+		console.log(mensaje);
+	})
+	
+	$scope.Inicio = function(userL){
+		//Inicio de sesion con firebase
+		firebase.auth().signInWithEmailAndPassword(userL.email,userL.password).then(function b(x){
+			swal("BIENVENIDO");
+			$state.go("tab.dash")
+		}).catch(function(error){
+			var mensaje = error.message;
+			console.log(mensaje);
+		})
+	}
+
 })
 
 //Controlador vista principal

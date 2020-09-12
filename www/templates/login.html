@@ -10,26 +10,28 @@
 	<div class="row info letra mail">
 		<div class="col text-center">
 			<span>CORREO</span>
-			<input type="email" name="" placeholder="E M A I L" class="input text-center">
+			<input type="email" name="" placeholder="E M A I L" class="input text-center" ng-model="userL.email">
 		</div>
 	</div>
 
 	<div class="row info letra mail">
 		<div class="col text-center">
 			<span>CONTRASEÑA</span>
-			<input type="password" name="" placeholder="C O N T R A S E Ñ A" class="input text-center">
+			<input type="password" name="" placeholder="C O N T R A S E Ñ A" class="input text-center" ng-model="userL.password">
 		</div>
 	</div>
 
 	<div class="row centrado">
 		<div class="col centrado">
-			<div class="boton letra"><span>Iniciar</span></div>
+			<div class="boton letra" ng-click="Inicio(userL)">
+				<span>Iniciar</span>
+			</div>
 		</div>
 	</div>
 
 	<div class="row espacio">
 		<div class="col">
-			<span class="log">¿Aún no tienes cuenta? &nbsp <b ui-sref="registro">Registrate</b> </span>
+			<span class="log">¿Aún no tienes cuenta? &nbsp <b ui-sref="registro"> Registrate </b> </span>
 		</div>
 	</div>
 	
