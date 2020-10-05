@@ -230,3 +230,12 @@
 .espaciado{
 	padding-top: 20px;
 }
+/* vista perfil foto*/
+.previewProfile {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+.prevPhoto {
+	text-align: center;
+}

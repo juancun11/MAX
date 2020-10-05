@@ -12,6 +12,7 @@ var firebaseConfig = {
 	firebase.initializeApp(firebaseConfig);
 	//base de datos
 	var database = firebase.database();
+	//var storage = firebase.storage();
 
 angular.module('starter.controllers', [])
 
@@ -30,8 +31,8 @@ angular.module('starter.controllers', [])
 		//Crear usuario con la autenticacion
 		firebase.auth().createUserWithEmailAndPassword(user.email, user.contra).then(function a(y){
 			// Notificacion que se creo el usuario
-			swal("se creo correctamente YEAH");
-			//obteber uid del ususario refistrado
+			swal("se creo correctamente");
+			//obteber uid del ususario registrado
 			$scope.uid = y.user.uid;
 			//Almacena el ususrio en la base de datos
 			firebase.database().ref("/users").child($scope.uid).set({
@@ -56,7 +57,9 @@ angular.module('starter.controllers', [])
 
 
 //Controlador vista inicio
-.controller("loginCtrl",function($scope, $state){
+.controller("loginCtrl",function($scope, $state, $rootScope){
+
+	$rootScope.uid;
 
 	//cerrar sesion del  usuario
 	firebase.auth().signOut().then(function(){
@@ -69,10 +72,26 @@ angular.module('starter.controllers', [])
 		//Inicio de sesion con firebase
 		firebase.auth().signInWithEmailAndPassword(userL.email,userL.password).then(function b(x){
 			swal("BIENVENIDO");
+
+			firebase.auth().onAuthStateChanged(function(usuario) {
+
+				if (usuario) {
+					//Usuario Activo
+					$rootScope.uid = usuario.uid;
+				} else {
+					//usuario no activo
+				}
+			})
+
 			$state.go("tab.dash")
 		}).catch(function(error){
 			var mensaje = error.message;
 			console.log(mensaje);
+			swal({
+  				title: "Error",
+				text: "Usuario o Contraseña Incorrecto",
+  				icon: "error"
+			});
 		})
 	}
 
@@ -112,6 +131,17 @@ angular.module('starter.controllers', [])
 
 //controlador vista de productos por categoria sin filtrar
 .controller('DashCtrl', function($scope,$rootScope, $state) {
+
+	$rootScope.name;
+	$rootScope.email;
+	$rootScope.foto;
+
+	firebase.database().ref("/users/"+$rootScope.uid).once("value").then(function(data){
+		$rootScope.name = data.val().nombre;
+		$rootScope.email = data.val().correo;
+		$rootScope.foto = data.val().foto;
+	})
+
 	$rootScope.listaProductos=[];
 	$rootScope.lista = [];
 	firebase.database().ref("/productos").on("value", function(p){
@@ -196,8 +226,69 @@ angular.module('starter.controllers', [])
 	$scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-	$scope.settings = {
-		enableFriends: true
-	};
+// Controlador Vista Perfil
+.controller('AccountCtrl', function($scope, $rootScope, $state) {
+
+	var storage = firebase.storage();
+
+	var uploadFoto;
+	var foto;
+	var nav;
+	var file;
+	var name;
+	
+	// Preload and Preview Image
+	$("#foto").on("change",function(){
+	    var uploadFoto = document.getElementById("foto").value;
+	    var foto       = document.getElementById("foto").files;
+	    var nav = window.URL || window.webkitURL;
+
+	    if(uploadFoto !=''){
+	        var type = foto[0].type;
+	        var name = foto[0].name;
+	        if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png'){
+	            $("#img").remove();
+	            //$(".delPhoto").addClass('notBlock');
+	            $('#foto').val('');
+	            return false;
+	        }else{
+	            $("#img").remove();
+	            //$(".delPhoto").removeClass('notBlock');
+	            var objeto_url = nav.createObjectURL(this.files[0]);
+	            file = this.files[0];
+	            $(".prevPhoto").append("<img class='previewProfile' id='img' src="+objeto_url+">");
+	            $(".upimg label").remove();
+	        }
+	    }else{
+	        alert("No selecciono foto");
+	        $("#img").remove();
+	    }
+	});
+
+	var enlace;
+
+	//almacenar imagen en la base de datos
+	$scope.saveChange = function(){
+		//creo una referencia al lugar donde guardamos el archivo
+		var refStorage = storage.ref('Users/').child(file.name);
+		//Almacenar la imagen dentro de la referncia del storage
+		var uploadTask = refStorage.put(file).then(function(result){
+			//get Url and store pass
+			refStorage.getDownloadURL().then(function(result){
+
+				var enlace = result;
+
+
+				//crear referencia al usuario
+				var database = firebase.database().ref().child("users/"+$rootScope.uid);
+				database.update({
+					foto: enlace
+				})
+
+			})
+
+		})
+
+	}
+
 });
